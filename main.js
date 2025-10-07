@@ -50,7 +50,7 @@
 
       const card2 = document.createElement('div');
       card2.className = 'card';
-      card2.innerHTML = `<h2>Kommst du?</h2><p>Wir bitten dich um eine Rückmeldung innerhalb der nächsten</p><div class="countdown" id="countdown-time">--d --h --m --s</div><a href='https://forms.gle/hSwmm3SbkZhPkeuw7' target='_blank' class='button'>Ja / Nein</a>`;
+      card2.innerHTML = `<h2>Kommst du?</h2><p>Bitte gib uns Bescheid innerhalb der nächsten</p><div class="countdown" id="countdown-time">--d --h --m --s</div><a href='https://forms.gle/hSwmm3SbkZhPkeuw7' target='_blank' class='button'>Ja / Nein</a>`;
 
       container.appendChild(card1);
       container.appendChild(card2);

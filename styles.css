@@ -3,7 +3,7 @@
 :root{
   --card-size: 280px;
   /* increase header reserve to safely contain 2 wrapped title lines */
-  --header-reserve: 8rem; /* reserved header height when centering */
+  --header-reserve: 16rem; /* reserved header height when centering */
   --layout-breakpoint: 980px;
 }
 
@@ -73,9 +73,9 @@ body {
   background-position: center center;
   background-size: cover;
   /* no blur: keep background images sharp */
-  filter: saturate(0.95) brightness(0.8);
+  filter: saturate(0.99) brightness(0.9);
   opacity: 0;
-  transition: opacity 1.2s ease-in-out;
+  transition: opacity 1.7s ease-in-out;
 }
 .bg-slide[data-active="true"]{
   opacity: 1;
@@ -267,7 +267,7 @@ a.button:hover {
 @media (max-width: 899px) {
   .site-header {
     /* allow a slightly taller header on mobile so the title has extra breathing room */
-    min-height: 8.2rem;
+    min-height: 12.2rem;
     padding-top: calc(0.6rem + env(safe-area-inset-top, 0));
     padding-bottom: 0.4rem;
   }
