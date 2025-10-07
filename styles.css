@@ -2,7 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 :root{
   --card-size: 300px;
-  --header-reserve: 3.5rem; /* reserved header height when centering */
+  /* increase header reserve to safely contain 2 wrapped title lines */
+  --header-reserve: 6rem; /* reserved header height when centering */
   --layout-breakpoint: 980px;
 }
 
@@ -47,14 +48,6 @@ body {
 
 /* previous single-image rules removed: slideshow uses .bg-slide elements now */
 
-@media (max-height: 420px) {
-  .background-container img.main-bg {
-    height: auto;
-    max-height: 100%;
-    width: 100%;
-    max-width: 100%;
-  }
-}
 
 .background-container::after {
   content: '';
@@ -108,15 +101,33 @@ body {
   padding-bottom: 0.45rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  /* keep the header in flow but pinned near the top; avoids overlapping content */
+  position: sticky;
+  top: 0;
+  z-index: 50; /* higher so header/title always sits above page content */
+}
+
+/* enable smooth fade/slide when the header is toggled (mobile only) */
+@media (max-width: 899px) {
+  .site-header {
+    transition: opacity 280ms ease, transform 280ms ease;
+    will-change: opacity, transform;
+  }
+  .site-header.header-hidden {
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+  }
 }
 
 h1.main-title {
   /* wedding-esque script font with serif fallback */
   font-family: 'Great Vibes', 'Playfair Display', serif;
-  font-size: 4.6rem;
-  line-height: 1.05;
+  /* responsive title size: comfortable on mobile, larger on desktop but clamped */
+  font-size: clamp(2.2rem, 4.8vw, 4.2rem);
+  line-height: 1.02;
   max-width: 92%;
-  margin: 0;
+  margin: 10px;
   text-align: center;
   color: #ffddc1;
   text-shadow: 0 2px 6px rgba(0,0,0,0.7);
@@ -127,7 +138,9 @@ h1.main-title {
 .scroll-wrapper {
   display: block;
   width: 100%;
-  padding: 1rem 0;
+  /* always reserve room for the header so wrapped titles won't overlap content */
+  padding-top: calc(var(--header-reserve) + env(safe-area-inset-top, 0));
+  padding-bottom: 1rem;
   z-index: 3;
   position: relative;
 }
@@ -223,15 +236,6 @@ a.button:hover {
   body {
     justify-content: center; /* vertically center content on desktop */
   }
-  /* keep the header fixed to the top so it's flush with the viewport */
-  .site-header {
-    position: fixed;
-    top: env(safe-area-inset-top, 0);
-    left: 0;
-    z-index: 5;
-    /* ensure the header keeps its padding when fixed */
-    padding-top: calc(0.45rem + env(safe-area-inset-top, 0));
-  }
   .scroll-wrapper {
     display: flex;
     align-items: center;
@@ -256,5 +260,26 @@ a.button:hover {
     aspect-ratio: 1 / 1; /* keep cards square on desktop */
     height: auto;
     overflow: visible;
+  }
+}
+
+/* Mobile: reduce top spacing so tiles sit closer under the title */
+@media (max-width: 899px) {
+  .site-header {
+    /* allow a smaller header on mobile while still keeping safe-area padding */
+    min-height: 3.2rem;
+    padding-top: calc(0.25rem + env(safe-area-inset-top, 0));
+    padding-bottom: 0.25rem;
+  }
+  .scroll-wrapper {
+    /* much smaller top padding on mobile so content sits nearer the title */
+    padding-top: calc(1.2rem + env(safe-area-inset-top, 0));
+  }
+}
+
+/* further reduce title size on small narrow screens to avoid pushing content down */
+@media (max-width: 420px) {
+  h1.main-title {
+    font-size: clamp(1.2rem, 6.5vw, 2.2rem);
   }
 }

@@ -50,7 +50,7 @@
 
       const card2 = document.createElement('div');
       card2.className = 'card';
-      card2.innerHTML = `<h2>Kommst du?</h2><p>Bitte gib uns zeitnah Bescheid ob du kommst!</p><div class="countdown" id="countdown-time">--d --h --m --s</div><a href='https://forms.gle/hSwmm3SbkZhPkeuw7' target='_blank' class='button'>Ja / Nein</a>`;
+      card2.innerHTML = `<h2>Kommst du?</h2><p>Wir bitten dich uns über dein Kommen zu infromieren innerhalb der nächsten</p><div class="countdown" id="countdown-time">--d --h --m --s</div><a href='https://forms.gle/hSwmm3SbkZhPkeuw7' target='_blank' class='button'>Ja / Nein</a>`;
 
       container.appendChild(card1);
       container.appendChild(card2);
@@ -113,8 +113,66 @@
 
     renderCards();
     startSlideshow();
+    enableHeaderFadeOnMobile();
   }
 
   document.addEventListener('DOMContentLoaded', init);
+
+  /* Header fade on scroll for mobile: lightweight, rAF-throttled */
+  function enableHeaderFadeOnMobile() {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
+    // Create a small sentinel right after the header to observe when it leaves the viewport
+    let sentinel = document.getElementById('header-sentinel');
+    if (!sentinel) {
+      sentinel = document.createElement('div');
+      sentinel.id = 'header-sentinel';
+      sentinel.style.position = 'relative';
+      sentinel.style.width = '1px';
+      sentinel.style.height = '1px';
+      sentinel.style.margin = '0';
+      // insert after header
+      header.parentNode.insertBefore(sentinel, header.nextSibling);
+    }
+
+    // Only apply on narrow viewports
+    function shouldObserve() {
+      return window.innerWidth <= 899;
+    }
+
+    let io;
+    function setupObserver() {
+      if (io) io.disconnect();
+      if (!shouldObserve()) {
+        header.classList.remove('header-hidden');
+        return;
+      }
+
+      io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          // when sentinel is not visible (entry.intersectionRatio === 0) the header has scrolled off
+          if (entry.intersectionRatio === 0) {
+            header.classList.add('header-hidden');
+          } else {
+            header.classList.remove('header-hidden');
+          }
+        });
+      }, {
+        root: null,
+        threshold: [0, 1],
+        rootMargin: `-${Math.round(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-reserve') || 60))}px 0px 0px 0px`
+      });
+
+      io.observe(sentinel);
+    }
+
+    // Re-setup observer on resize (responsive)
+    window.addEventListener('resize', () => {
+      setupObserver();
+    }, { passive: true });
+
+    setupObserver();
+  }
 
 })();
