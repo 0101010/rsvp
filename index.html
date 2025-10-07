@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unsere Hochzeitsfeier</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="background-container" style="--bg-image: url('./background1.jpg')">
+     <div class="bg-slides" aria-hidden="true">
+      <div class="bg-slide"></div>
+      <div class="bg-slide"></div>
+      <div class="bg-overlay" aria-hidden="true"></div>
+     </div>
+  </div>
+
+  <header class="site-header">
+    <h1 class="main-title"><br/>This is going to be <b>a Wildt one</b>!</h1>
+  </header>
+
+  <div class="scroll-wrapper">
+    <div class="container" id="cards-container">
+      <!-- Cards will be injected here based on date -->
+    </div>
+  </div>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

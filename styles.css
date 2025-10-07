@@ -1,0 +1,260 @@
+/* Extracted styles from index.html */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+:root{
+  --card-size: 300px;
+  --header-reserve: 3.5rem; /* reserved header height when centering */
+  --layout-breakpoint: 980px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  background-color: #0e0e0e;
+  color: #fff;
+}
+
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* prefer the dynamic viewport unit when supported, with fallback to 100vh */
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  z-index: -1; /* sits behind main content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: var(--bg-image);
+}
+
+/* previous single-image rules removed: slideshow uses .bg-slide elements now */
+
+@media (max-height: 420px) {
+  .background-container img.main-bg {
+    height: auto;
+    max-height: 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.background-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(14,14,14,0) 68%, rgba(14,14,14,0.85) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+/* Slideshow styles */
+.bg-slides {
+  position: absolute;
+  inset: 0;
+  z-index: -3; /* behind the main-bg area but behind the blurred pseudo */
+  overflow: hidden;
+}
+.bg-slide {
+  position: absolute;
+  inset: 0;
+  background-position: center center;
+  background-size: cover;
+  /* no blur: keep background images sharp */
+  filter: saturate(0.95) brightness(0.8);
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+.bg-slide[data-active="true"]{
+  opacity: 1;
+}
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.25), rgba(10,10,10,0.55));
+  z-index: 2;
+  pointer-events: none;
+}
+
+.site-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* allow the header to grow when the title wraps (prevents clipping) */
+  min-height: var(--header-reserve);
+  box-sizing: border-box;
+  /* add a small vertical padding and respect safe-area insets on devices with notches */
+  padding-top: calc(0.45rem + env(safe-area-inset-top, 0));
+  padding-bottom: 0.45rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+h1.main-title {
+  /* wedding-esque script font with serif fallback */
+  font-family: 'Great Vibes', 'Playfair Display', serif;
+  font-size: 4.6rem;
+  line-height: 1.05;
+  max-width: 92%;
+  margin: 0;
+  text-align: center;
+  color: #ffddc1;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+  z-index: 3;
+  position: relative;
+}
+
+.scroll-wrapper {
+  display: block;
+  width: 100%;
+  padding: 1rem 0;
+  z-index: 3;
+  position: relative;
+}
+
+.container {
+  /* Mobile-first: stack widgets vertically */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 1200px;
+  width: 100%;
+  align-items: center;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.card {
+  background: rgba(30, 30, 30, 0.7);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-sizing: border-box;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* use fixed card size but shrink to viewport if needed so stacked layout matches horizontal */
+  width: min(var(--card-size), 92vw);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  flex: none;
+  color: #fff;
+}
+
+.location-card {
+  position: relative;
+  /* styles.css is in assets/, so image is one level up */
+  background: url('./location.jpeg') center center / cover no-repeat;
+  border-radius: 1rem;
+  overflow: hidden;
+  color: #fff;
+}
+
+.location-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+h2, p {
+  margin: 0.5rem 0;
+}
+
+a.button {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  background-color: #b5838d;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1.5rem;
+}
+
+a.button:hover {
+  background-color: #8e5a63;
+  transform: translateY(-2px);
+}
+
+.countdown {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffddc1;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 900px) {
+  body {
+    justify-content: center; /* vertically center content on desktop */
+  }
+  /* keep the header fixed to the top so it's flush with the viewport */
+  .site-header {
+    position: fixed;
+    top: env(safe-area-inset-top, 0);
+    left: 0;
+    z-index: 5;
+    /* ensure the header keeps its padding when fixed */
+    padding-top: calc(0.45rem + env(safe-area-inset-top, 0));
+  }
+  .scroll-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* reserve space for the header/title so cards are vertically centered beneath it */
+    min-height: calc(100dvh - var(--header-reserve));
+    /* make room for the fixed header so content doesn't sit underneath it; include safe-area inset */
+    padding-top: calc(var(--header-reserve) + env(safe-area-inset-top, 0));
+  }
+  .container {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    gap: 2rem;
+  }
+  .card {
+    width: var(--card-size);
+    flex: 0 0 var(--card-size);
+    max-width: none;
+    aspect-ratio: 1 / 1; /* keep cards square on desktop */
+    height: auto;
+    overflow: visible;
+  }
+}
