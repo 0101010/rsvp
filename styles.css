@@ -1,9 +1,9 @@
 /* Extracted styles from index.html */
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 :root{
-  --card-size: 300px;
+  --card-size: 280px;
   /* increase header reserve to safely contain 2 wrapped title lines */
-  --header-reserve: 6rem; /* reserved header height when centering */
+  --header-reserve: 8rem; /* reserved header height when centering */
   --layout-breakpoint: 980px;
 }
 
@@ -124,7 +124,7 @@ h1.main-title {
   /* wedding-esque script font with serif fallback */
   font-family: 'Great Vibes', 'Playfair Display', serif;
   /* responsive title size: comfortable on mobile, larger on desktop but clamped */
-  font-size: clamp(2.2rem, 4.8vw, 4.2rem);
+  font-size: clamp(3.2rem, 4.8vw, 4.8rem);
   line-height: 1.02;
   max-width: 92%;
   margin: 10px;
@@ -217,7 +217,7 @@ a.button {
   text-decoration: none;
   box-shadow: 0 4px 10px rgba(0,0,0,0.4);
   transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-top: 1.5rem;
+  margin-top: 0.1rem;
 }
 
 a.button:hover {
@@ -266,20 +266,24 @@ a.button:hover {
 /* Mobile: reduce top spacing so tiles sit closer under the title */
 @media (max-width: 899px) {
   .site-header {
-    /* allow a smaller header on mobile while still keeping safe-area padding */
-    min-height: 3.2rem;
-    padding-top: calc(0.25rem + env(safe-area-inset-top, 0));
-    padding-bottom: 0.25rem;
+    /* allow a slightly taller header on mobile so the title has extra breathing room */
+    min-height: 8.2rem;
+    padding-top: calc(0.6rem + env(safe-area-inset-top, 0));
+    padding-bottom: 0.4rem;
   }
   .scroll-wrapper {
-    /* much smaller top padding on mobile so content sits nearer the title */
-    padding-top: calc(1.2rem + env(safe-area-inset-top, 0));
+    /* match mobile header height so content doesn't overlap; keeps tiles close beneath title */
+    padding-top: calc(4.2rem + env(safe-area-inset-top, 0));
+  }
+  /* double the spacing between cards on mobile */
+  .container {
+    gap: 2rem;
   }
 }
 
 /* further reduce title size on small narrow screens to avoid pushing content down */
-@media (max-width: 420px) {
+@media (max-width: 320px) {
   h1.main-title {
-    font-size: clamp(1.2rem, 6.5vw, 2.2rem);
+    font-size: clamp(2.2rem, 6.5vw, 3.2rem);
   }
 }
