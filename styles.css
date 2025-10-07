@@ -1,7 +1,7 @@
 /* Extracted styles from index.html */
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 :root{
-  --card-size: 280px;
+  --card-size: 270px;
   /* increase header reserve to safely contain 2 wrapped title lines */
   --header-reserve: 16rem; /* reserved header height when centering */
   --layout-breakpoint: 980px;
@@ -236,14 +236,20 @@ a.button:hover {
   body {
     justify-content: center; /* vertically center content on desktop */
   }
+  /* make header height exact on desktop so centering math is reliable */
+  .site-header {
+    height: var(--header-reserve);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
   .scroll-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
     /* reserve space for the header/title so cards are vertically centered beneath it */
     min-height: calc(100dvh - var(--header-reserve));
-    /* make room for the fixed header so content doesn't sit underneath it; include safe-area inset */
-    padding-top: calc(var(--header-reserve) + env(safe-area-inset-top, 0));
+    /* no extra top padding on desktop — allow true vertical centering */
+    padding-top: 0;
   }
   .container {
     flex-direction: row;
@@ -252,6 +258,10 @@ a.button:hover {
     justify-content: center;
     padding: 0;
     gap: 2rem;
+  }
+  /* ensure the title doesn't add unexpected extra height on desktop */
+  h1.main-title {
+    margin: 0;
   }
   .card {
     width: var(--card-size);
