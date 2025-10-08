@@ -32,7 +32,7 @@
 
     const locationCard = document.createElement('div');
     locationCard.className = 'card location-card';
-    locationCard.innerHTML = `<div class='location-overlay'><h2>Wann und Wo</h2><p>Datum: 29. August 2026<br>Ort: Obergurgl, Österreich<br><br><b>Vorraussichtlich früher Start ab 10 Uhr</b></p></div>`;
+    locationCard.innerHTML = `<div class='location-overlay'><h2>Wann und Wo</h2><p>Datum: 29. August 2026<br>Ort: Obergurgl, Österreich<br><br><b>Vorraussichtlich früher Start am Vormittag</b></p></div>`;
 
 
     if (now > initialDeadline) {
@@ -50,7 +50,7 @@
 
       const card2 = document.createElement('div');
       card2.className = 'card';
-      card2.innerHTML = `<h2>Kommst du?</h2><p>Bitte gib uns Bescheid innerhalb der nächsten</p><div class="countdown" id="countdown-time">--d --h --m --s</div><a href='https://forms.gle/hSwmm3SbkZhPkeuw7' target='_blank' class='button'>Ja / Nein</a>`;
+      card2.innerHTML = `<h2>Kommst du?</h2><p>Bitte gib uns Bescheid innerhalb der nächsten</p><div class="countdown" id="countdown-time">--d --h --m --s</div><a href='https://forms.gle/hSwmm3SbkZhPkeuw7' target='_blank' class='button'>Hier Antworten</a>`;
 
       container.appendChild(card1);
       container.appendChild(card2);
@@ -67,7 +67,7 @@
     const slides = document.querySelectorAll('.bg-slide');
     if (!slides || slides.length < 2) return;
 
-    const images = options.images || ['./background1.jpg','./background2.jpg','./background3.JPG'];
+    const images = options.images || ['./background1.jpg','./background2.jpg','./background3.JPG','./background4.jpeg','./background5.jpeg'];
     const interval = options.interval || 6000;
     const fadeTime = options.fadeTime || 1200;
 
