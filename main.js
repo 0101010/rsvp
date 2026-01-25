@@ -100,7 +100,7 @@
     setInterval(() => updateCountdown(initialDeadline, countdownEl), 1000);
   }
 
-  function startSlideshow(images = ['./background1.jpg','./background2.jpg','./background3.JPG','./background4.jpeg','./background5.jpeg'], interval = 6000) {
+  function startSlideshow(images = ['./background1.jpg','./background2.jpg','./background3.JPG','./background4.jpeg','./background5.jpeg','background6.jpeg'], interval = 6000) {
     const slides = document.querySelectorAll('.bg-slide');
     if (slides.length < 2) return;
 
