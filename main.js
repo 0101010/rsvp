@@ -1,9 +1,7 @@
-// Extracted JS from index.html and restructured
 (function(){
   'use strict';
 
-  const containerSelector = '#cards-container';
-  let container;
+  const container = document.querySelector('#cards-container');
 
   function updateCountdown(deadline, element) {
     if (!element) return;
@@ -15,102 +13,117 @@
       return;
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((distance % (1000*60)) / 1000);
 
     element.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
   }
 
   function renderCards() {
-    const now = new Date().getTime();
     container.innerHTML = '';
 
-    const initialDeadline = new Date('2025-10-30T23:59:59').getTime();
-    const secondaryDeadline = new Date('2026-08-29T10:00:00').getTime();
+    // Card 1: Wedding Announcement
+    const card1 = document.createElement('div');
+    card1.className = 'card';
+    card1.innerHTML = `<h2>Wir heiraten!</h2>
+                       <p>Und möchten diesen besonderen Tag mit den Menschen teilen, die wir besonders lieb haben!</p>
+                       <p>Dazu gehörst du!</p>`;
 
+    // Card 2: CountDown
+    const card2 = document.createElement('div');
+    card2.className = 'card';
+    card2.innerHTML = `<h2>Wir freuen uns!</h2>
+                       <div class="countdown" id="countdown-time">--d --h --m --s</div>`;
+
+    // Card 3: Location
     const locationCard = document.createElement('div');
     locationCard.className = 'card location-card';
-    locationCard.innerHTML = `<div class='location-overlay'><h2>Wann und Wo</h2><p>Datum: 29. August 2026<br>Ort: Obergurgl, Österreich<br><br><b>Vorraussichtlich früher Start am Vormittag</b></p></div>`;
+    locationCard.innerHTML = `<div class='location-overlay'>
+                                <h2>Wann und Wo</h2>
+                                <p>Datum: 29. August 2026<br>Ort: Obergurgl, Österreich<br><br><b>Vorraussichtlich früher Start am Vormittag (~10:00)</b></p>
+                              </div>`;
 
+    // Card Accomodation
+    const cardac = document.createElement('div');
+    cardac.className = 'card double-row';
+    cardac.innerHTML = `<h2>Übernachtung</h2>
+                       <p>Als bodenständige preiswerte Option, empfehlen wir die Appartments und Zimmer im Haus Aktiv und Wendlhof. Beide Unterkünfte sind recht nah an der Kirche. Bitte wendet euch für diese Unterkünfte an Hermine und erwähnt den Anlass:</p>
+                       <p>
+                       <b>Hermine Schöpf</b>
+                       <a href="tel:+4352566322" target='_blank' class='button'>+43 5256 6322</a>
+                       <a href="mailto:info@haus-aktiv.com" target='_blank' class='button'>info@haus-aktiv.com</a></p>
+                       <p>Sollte Hermine schon voll sein oder ihr etwas luxuriöseres suchen gibt es ein Buchungsportal für Hotels:</p>
+                       <p><a href="https://www.oetztal.com/de/suchen-buchen/unterkuenfte/unterkunftsliste?from=2026-08-28&to=2026-08-30&adults[0]=2&location[0]=38429dda-1022-4f98-a189-412e6b244984&sort=price&search=1" target='_blank' class='button'>Tourismusverband</a></p>`;
 
-    if (now > initialDeadline) {
-      const newCard = document.createElement('div');
-      newCard.className = 'card';
-      newCard.innerHTML = `<h2>Wir freuen uns!</h2><div class="countdown" id="new-countdown">--d --h --m --s</div>`;
-      container.appendChild(newCard);
-      container.appendChild(locationCard);
-      const newCountdownEl = document.getElementById('new-countdown');
-      setInterval(() => updateCountdown(secondaryDeadline, newCountdownEl), 1000);
-    } else {
-      const card1 = document.createElement('div');
-      card1.className = 'card';
-      card1.innerHTML = `<h2>Wir heiraten!</h2><p>Und möchten diesen besonderen Tag mit den Menschen teilen, die wir besonders lieb haben!</p><p>Dazu gehörst du!</p>`;
+    // Card Breakfast
+    const cardbr = document.createElement('div');
+    cardbr.className = 'card';
+    cardbr.innerHTML = `<div>
+                                <h2>Sonntagsfrühstück</h2>
+                                <p>Für den Morgen nach der Hochzeit planen wir ein gemeinsames Frühstück. 
+                                <br>(voraussichtlich 9:00-11:00)</p>
+                              </div>`;
 
-      const card2 = document.createElement('div');
-      card2.className = 'card';
-      card2.innerHTML = `<h2>Kommst du?</h2><p>Bitte gib uns Bescheid innerhalb der nächsten</p><div class="countdown" id="countdown-time">--d --h --m --s</div><a href='https://forms.gle/hSwmm3SbkZhPkeuw7' target='_blank' class='button'>Hier Antworten</a>`;
+    // Card Marathon
+    const cardmar = document.createElement('div');
+    cardmar.className = 'card double-row';
+    cardmar.innerHTML = `<div>
+                                <h2>Buchung und Abreise im Kontext des Ötztal Radmarathons</h2>
+                                <p>
+                                <br>⚠️
+                                <br><br>Am 30. August findet der Ötztal Radmarathon statt.
+                                <br><br>Wir empfehlen die <b>zeitnahe Buchung einer Unterkunft</b>, da die Radmarathon Startplätze Mitte Februar vergeben werden.
+                                <br><br>Am Abreisetag Sonntag wird der Weg durchs Tal zweitweise gesperrt sein. Unter Annahme, dass der Ablauf dem des Vorjahres entspricht, muss der Nachbarort Sölden bis ~12:30 passiert sein. Die genauen Durchfahrtszeiten werden noch bekannt gegeben.
+                                </p>
+                              </div>`;
 
-      container.appendChild(card1);
-      container.appendChild(card2);
-      container.appendChild(locationCard);
+    // Card Travel Together
+    const cardtr = document.createElement('div');
+    cardtr.className = 'card';
+    cardtr.innerHTML = `<div>
+                                <h2>Zusammen Reisen und Unterkommen</h2>
+                                <p>Wenn ihr offen seid jemanden mitzunehmen oder eine Unterkunft zu teilen, könnt ihr euch in dieser unmoderierten Gruppe zusammenfinden:</p>
+                                <p><a href="https://chat.whatsapp.com/Hba1y3pTnPbFohEDtqa1mD" target='_blank' class='button'>WhatsApp Gruppe</a></p>
+                               </div>`;
 
-      const countdownTimeEl = document.getElementById('countdown-time');
-      setInterval(() => updateCountdown(initialDeadline, countdownTimeEl), 1000);
-    }
+    container.appendChild(cardmar);
+    container.appendChild(cardtr);
+    container.appendChild(cardac);
+    container.appendChild(cardbr);
+    container.appendChild(locationCard);
+    container.appendChild(card2);
+
+    const initialDeadline = new Date('2026-08-29T10:00:00').getTime();
+    const countdownEl = document.getElementById('countdown-time');
+    setInterval(() => updateCountdown(initialDeadline, countdownEl), 1000);
   }
 
-  // Sync background and image sizing
-  // Background slideshow (crossfade)
-  function startSlideshow(options = {}) {
+  function startSlideshow(images = ['./background1.jpg','./background2.jpg','./background3.JPG','./background4.jpeg','./background5.jpeg'], interval = 6000) {
     const slides = document.querySelectorAll('.bg-slide');
-    if (!slides || slides.length < 2) return;
+    if (slides.length < 2) return;
 
-    const images = options.images || ['./background1.jpg','./background2.jpg','./background3.JPG','./background4.jpeg','./background5.jpeg'];
-    const interval = options.interval || 6000;
-    const fadeTime = options.fadeTime || 1200;
+    let current = 1;
+    let activeIndex = 0;
 
-    // preload images
-    const cache = images.map(src => {
-      const i = new Image();
-      i.src = src;
-      return i;
-    });
-
-    let current = 0;
-    let activeIndex = 0; // which slide element is active (0 or 1)
-
-    // initialize first two slides
     slides[0].style.backgroundImage = `url('${images[0]}')`;
     slides[1].style.backgroundImage = `url('${images[1 % images.length]}')`;
     slides[0].dataset.active = 'true';
     slides[1].dataset.active = 'false';
-    current = 1;
 
-    const tick = () => {
+    setInterval(() => {
       const nextImage = images[(current + 1) % images.length];
-      const showSlide = (activeIndex ^ 1); // toggle 0/1
-
-      // set next image on the hidden slide then fade
+      const showSlide = activeIndex ^ 1;
       slides[showSlide].style.backgroundImage = `url('${nextImage}')`;
       slides[showSlide].dataset.active = 'true';
       slides[activeIndex].dataset.active = 'false';
-
       activeIndex = showSlide;
       current = (current + 1) % images.length;
-    };
-
-    const handle = setInterval(tick, interval);
-
-    // expose stop function on document to allow cleanup if needed
-    document.__bgSlideshowHandle = handle;
+    }, interval);
   }
 
   function init() {
-    container = document.querySelector(containerSelector);
-    if (!container) return;
-
     renderCards();
     startSlideshow();
     enableHeaderFadeOnMobile();
@@ -118,12 +131,10 @@
 
   document.addEventListener('DOMContentLoaded', init);
 
-  /* Header fade on scroll for mobile: lightweight, rAF-throttled */
   function enableHeaderFadeOnMobile() {
     const header = document.querySelector('.site-header');
     if (!header) return;
 
-    // Create a small sentinel right after the header to observe when it leaves the viewport
     let sentinel = document.getElementById('header-sentinel');
     if (!sentinel) {
       sentinel = document.createElement('div');
@@ -131,15 +142,10 @@
       sentinel.style.position = 'relative';
       sentinel.style.width = '1px';
       sentinel.style.height = '1px';
-      sentinel.style.margin = '0';
-      // insert after header
       header.parentNode.insertBefore(sentinel, header.nextSibling);
     }
 
-    // Only apply on narrow viewports
-    function shouldObserve() {
-      return window.innerWidth <= 899;
-    }
+    function shouldObserve() { return true; }
 
     let io;
     function setupObserver() {
@@ -148,30 +154,16 @@
         header.classList.remove('header-hidden');
         return;
       }
-
-      io = new IntersectionObserver((entries) => {
+      io = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-          // when sentinel is not visible (entry.intersectionRatio === 0) the header has scrolled off
-          if (entry.intersectionRatio === 0) {
-            header.classList.add('header-hidden');
-          } else {
-            header.classList.remove('header-hidden');
-          }
+          if (entry.intersectionRatio === 0) header.classList.add('header-hidden');
+          else header.classList.remove('header-hidden');
         });
-      }, {
-        root: null,
-        threshold: [0, 1],
-        rootMargin: `-${Math.round(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-reserve') || 60))}px 0px 0px 0px`
-      });
-
+      }, { root: null, threshold: [0,1], rootMargin: `-${parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-reserve')||60)}px 0px 0px 0px` });
       io.observe(sentinel);
     }
 
-    // Re-setup observer on resize (responsive)
-    window.addEventListener('resize', () => {
-      setupObserver();
-    }, { passive: true });
-
+    window.addEventListener('resize', setupObserver, {passive:true});
     setupObserver();
   }
 

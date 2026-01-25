@@ -1,7 +1,7 @@
 /* Extracted styles from index.html */
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 :root{
-  --card-size: 270px;
+  --card-size: 300px;
   /* increase header reserve to safely contain 2 wrapped title lines */
   --header-reserve: 16rem; /* reserved header height when centering */
   --layout-breakpoint: 980px;
@@ -108,7 +108,7 @@ body {
 }
 
 /* enable smooth fade/slide when the header is toggled (mobile only) */
-@media (max-width: 899px) {
+
   .site-header {
     transition: opacity 280ms ease, transform 280ms ease;
     will-change: opacity, transform;
@@ -118,7 +118,7 @@ body {
     transform: translateY(-6px);
     pointer-events: none;
   }
-}
+
 
 h1.main-title {
   /* wedding-esque script font with serif fallback */
@@ -150,7 +150,7 @@ h1.main-title {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: 1200px;
+  max-width: 1600px;
   width: 100%;
   align-items: center;
   padding: 0 1rem;
@@ -232,7 +232,7 @@ a.button:hover {
   margin-bottom: 1rem;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1000px) {
   body {
     justify-content: center; /* vertically center content on desktop */
   }
@@ -274,7 +274,7 @@ a.button:hover {
 }
 
 /* Mobile: reduce top spacing so tiles sit closer under the title */
-@media (max-width: 899px) {
+@media (max-width: 999px) {
   .site-header {
     /* allow a slightly taller header on mobile so the title has extra breathing room */
     min-height: 12.2rem;
@@ -296,4 +296,21 @@ a.button:hover {
   h1.main-title {
     font-size: clamp(2.2rem, 6.5vw, 3.2rem);
   }
+}
+
+.container {
+  /* Switch from flex to CSS Grid for responsive card layout */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  max-width: 1400px;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.card.double-row {
+  grid-row: span 2; /* spans two rows vertically */
+  aspect-ratio: 1 / 2.12;
 }
