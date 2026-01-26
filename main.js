@@ -62,8 +62,9 @@
     cardbr.className = 'card';
     cardbr.innerHTML = `<div>
                                 <h2>Sonntagsfrühstück</h2>
-                                <p>Für den Morgen nach der Hochzeit planen wir ein gemeinsames Frühstück. 
-                                <br>(voraussichtlich 9:00-11:00)</p>
+                                <p>
+                                <br>Für den Morgen nach der Hochzeit planen wir ein gemeinsames Frühstück. 
+                                <br><br>(voraussichtlich 9:00-11:00)</p>
                               </div>`;
 
     // Card Marathon
@@ -72,10 +73,9 @@
     cardmar.innerHTML = `<div>
                                 <h2>Buchung und Abreise im Kontext des Ötztal Radmarathons</h2>
                                 <p>
-                                <br>⚠️
-                                <br><br>Am 30. August findet der Ötztal Radmarathon statt.
-                                <br><br>Wir empfehlen die <b>zeitnahe Buchung einer Unterkunft</b>, da die Radmarathon Startplätze Mitte Februar vergeben werden.
-                                <br><br>Am Abreisetag Sonntag wird der Weg durchs Tal zweitweise gesperrt sein. Unter Annahme, dass der Ablauf dem des Vorjahres entspricht, muss der Nachbarort Sölden bis ~12:30 passiert sein. Die genauen Durchfahrtszeiten werden noch bekannt gegeben.
+                                <br>Am 30. August findet der Ötztal Radmarathon statt.
+                                <br><br>Wir empfehlen die <b>zeitnahe Buchung einer Unterkunft</b>, da die Radmarathon Startplätze ab Mitte Februar vergeben werden.
+                                <br><br>Am Abreisetag Sonntag wird der Weg durchs Tal zweitweise gesperrt sein. Unter der Annahme, dass der Ablauf dem des Vorjahres entspricht, muss der Nachbarort Sölden bis ~12:30 passiert sein. Die genauen Durchfahrtszeiten werden noch bekannt gegeben.
                                 </p>
                               </div>`;
 
@@ -88,11 +88,21 @@
                                 <p><a href="https://chat.whatsapp.com/Hba1y3pTnPbFohEDtqa1mD" target='_blank' class='button'>WhatsApp Gruppe</a></p>
                                </div>`;
 
+    // Card Games
+    const cardga = document.createElement('div');
+    cardga.className = 'card';
+    cardga.innerHTML = `<div>
+                                <h2>Spiele / Aktivitäten </h2>
+                                <p>Falls Ihr im Rahmen der Feier eine Aktivität oder ein Spiel beitragen wollt, so stimmt das bitte vorzeitig und rechtzeitig mit dem Trauzeugen Team ab.</p>
+                                <p><b>Ansprechpartnerin Aktivitäten</b><a href="https://wa.me/436766268474" target='_blank' class='button'>WhatsApp Marie</a></p>
+                               </div>`;
+
     container.appendChild(cardmar);
     container.appendChild(cardtr);
     container.appendChild(cardac);
     container.appendChild(cardbr);
     container.appendChild(locationCard);
+    container.appendChild(cardga);
     container.appendChild(card2);
 
     const initialDeadline = new Date('2026-08-29T10:00:00').getTime();
