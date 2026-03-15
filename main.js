@@ -42,7 +42,7 @@
     locationCard.className = 'card location-card';
     locationCard.innerHTML = `<div class='location-overlay'>
                                 <h2>Wann und Wo</h2>
-                                <p>Datum: 29. August 2026<br>Ort: Obergurgl, Österreich<br><br><b>Vorraussichtlich früher Start am Vormittag (~10:00)</b></p>
+                                <p>Datum: 29. August 2026<br>Ort: Obergurgl, Österreich<br><br><b>Früher Start am Vormittag 10:00</b></p>
                               </div>`;
 
     // Card Accomodation
