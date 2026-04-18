@@ -3,7 +3,6 @@
 :root{
   --card-size: 300px;
   /* increase header reserve to safely contain 2 wrapped title lines */
-  --header-reserve: 16rem; /* reserved header height when centering */
   --layout-breakpoint: 980px;
 }
 
@@ -25,6 +24,7 @@ body {
   position: relative;
   background-color: #0e0e0e;
   color: #fff;
+  margin: 0;
 }
 
 .background-container {
@@ -94,17 +94,14 @@ body {
   justify-content: center;
   align-items: center;
   /* allow the header to grow when the title wraps (prevents clipping) */
-  min-height: var(--header-reserve);
   box-sizing: border-box;
   /* add a small vertical padding and respect safe-area insets on devices with notches */
-  padding-top: calc(0.45rem + env(safe-area-inset-top, 0));
-  padding-bottom: 0.45rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: calc(0.45rem + env(safe-area-inset-top, 0)) 1rem 0.45rem;
   /* keep the header in flow but pinned near the top; avoids overlapping content */
   position: sticky;
   top: 0;
   z-index: 50; /* higher so header/title always sits above page content */
+    min-height: 15rem;
 }
 
 /* enable smooth fade/slide when the header is toggled (mobile only) */
@@ -138,8 +135,7 @@ h1.main-title {
 .scroll-wrapper {
   display: block;
   width: 100%;
-  /* always reserve room for the header so wrapped titles won't overlap content */
-  padding-top: calc(var(--header-reserve) + env(safe-area-inset-top, 0));
+  padding-top: 0;
   padding-bottom: 1rem;
   z-index: 3;
   position: relative;
@@ -155,6 +151,7 @@ h1.main-title {
   align-items: center;
   padding: 0 1rem;
   box-sizing: border-box;
+  margin-top: 1rem;
 }
 
 .card {
@@ -233,23 +230,11 @@ a.button:hover {
 }
 
 @media (min-width: 1000px) {
-  body {
-    justify-content: center; /* vertically center content on desktop */
-  }
   /* make header height exact on desktop so centering math is reliable */
   .site-header {
     height: var(--header-reserve);
     padding-top: 0;
     padding-bottom: 0;
-  }
-  .scroll-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* reserve space for the header/title so cards are vertically centered beneath it */
-    min-height: calc(100dvh - var(--header-reserve));
-    /* no extra top padding on desktop — allow true vertical centering */
-    padding-top: 0;
   }
   .container {
     flex-direction: row;
@@ -258,6 +243,7 @@ a.button:hover {
     justify-content: center;
     padding: 0;
     gap: 2rem;
+    margin: 0 auto;
   }
   /* ensure the title doesn't add unexpected extra height on desktop */
   h1.main-title {
@@ -280,10 +266,6 @@ a.button:hover {
     min-height: 12.2rem;
     padding-top: calc(0.6rem + env(safe-area-inset-top, 0));
     padding-bottom: 0.4rem;
-  }
-  .scroll-wrapper {
-    /* match mobile header height so content doesn't overlap; keeps tiles close beneath title */
-    padding-top: calc(4.2rem + env(safe-area-inset-top, 0));
   }
   /* double the spacing between cards on mobile */
   .container {
