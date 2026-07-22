@@ -42,7 +42,7 @@
     locationCard.className = 'card location-card';
     locationCard.innerHTML = `<div class='location-overlay'>
                                 <h2>Wann und Wo</h2>
-                                <p>Datum: 29. August 2026</b></p>
+                                <p>Datum: 29. August 2026</p>
                                 <p>Kirche: Johannes Nepomuk Kirche, Ramolweg 2</p>
                                 <p>Feier: Hohe Mut Alm</p>
                                 <p>Ort: 6456 Obergurgl, Österreich</p>
@@ -52,7 +52,7 @@
     const cardac = document.createElement('div');
     cardac.className = 'card double-row';
     cardac.innerHTML = `<h2>Übernachtung</h2>
-                       <p>Solltet ihr bereits vor Monaten gebucht haben aber keine konkrete Buchungsbestätigung erhalten haben, empfehlen wir erneut mit eurer Unterkunft Kontakt aufzunehmen und um Bestätigung zu bitten.</p>
+                       <p>Solltet ihr bereits vor Monaten gebucht, aber keine konkrete Buchungsbestätigung erhalten haben, empfehlen wir, erneut mit eurer Unterkunft Kontakt aufzunehmen und um Bestätigung zu bitten.</p>
                        <p>Als alternative Unterbringung empfehlen wir das <i>Unizentrum Obergurgl</i>, wo mit dem Buchungspasswort <b>„Hochzeit Wildt“</b> noch Kapazitäten verfügbar sind. Achtet auf die Preisunterschiede je nach mitgebuchter Verpflegung.</p>
                        <p><a href="mailto:obergurgl@uibk.ac.at" class='button'>Unizentrum Obergurgl</a></p>
                        <p>Auch in anderen Quartieren gibt es noch Kapazitäten: Pension Michael, Haus Alpenblick, Haus Schönblick, Haus Christophorus und Ferienwohnungen Broser.</p>`;
@@ -81,7 +81,7 @@
     cardtr.className = 'card';
     cardtr.innerHTML = `<div>
                                 <h2>Zusammen Reisen und Unterkommen</h2>
-                                <p>Wenn ihr offen seid jemanden mitzunehmen oder eure Unterkunft zu teilen, könnt ihr euch in dieser unmoderierten Gruppe zusammenfinden:</p>
+                                <p>Wenn ihr offen seid, jemanden mitzunehmen oder eure Unterkunft zu teilen, könnt ihr euch in dieser unmoderierten Gruppe zusammenfinden:</p>
                                 <p><a href="https://chat.whatsapp.com/Hba1y3pTnPbFohEDtqa1mD" target='_blank' class='button'>WhatsApp Mitreisende</a></p>
                                </div>`;
 
@@ -90,7 +90,7 @@
     cardga.className = 'card';
     cardga.innerHTML = `<div>
                                 <h2>Spiele / Aktivitäten </h2>
-                                <p>Falls Ihr im Rahmen der Feier eine Aktivität oder ein Spiel beitragen wollt, so stimmt das bitte vorzeitig und rechtzeitig mit dem Trauzeugen Team ab.</p>
+                                <p>Falls ihr im Rahmen der Feier eine Aktivität oder ein Spiel beitragen wollt, so stimmt das bitte vorzeitig und rechtzeitig mit dem Trauzeugen-Team ab.</p>
                                 <p><b>Ansprechpartnerin Aktivitäten</b><a href="https://wa.me/436766268474" target='_blank' class='button'>WhatsApp Marie</a></p>
                                </div>`;
 
@@ -119,7 +119,7 @@
     cardkleider.className = 'card';
     cardkleider.innerHTML = `<div>
                                 <h2>Kleiderordnung</h2>
-                                <p>Von smart casual bis formell, kleidet euch festlich aber ganz so, wie ihr euch wohlfühlt.</p>
+                                <p>Von smart casual bis formell, kleidet euch festlich, aber ganz so, wie ihr euch wohlfühlt.</p>
                                 <p>Traditionsgemäß bitten wir, auf rein-weiße oder rein-rote Outfits zu verzichten.</p>
                               </div>`;
 
@@ -128,7 +128,7 @@
     cardschuhe.className = 'card';
     cardschuhe.innerHTML = `<div>
                                 <h2>Schuhwahl</h2>
-                                <p>Die Fußwege ab der Kirche sind dank Shuttle und Lift kurz. Auf der Alm besteht der Boden aus Planken und Fliesen. Das Gruppenfoto wird auf einer Wiese stattfinden. Entscheidet euch bei den Schuhen also lieber für "praktisch und bequem".</p>
+                                <p>Die Fußwege ab der Kirche sind dank Shuttle und Lift kurz. Auf der Alm besteht der Boden aus Planken und Fliesen. Das Gruppenfoto wird auf einer Wiese stattfinden. Entscheidet euch bei den Schuhen also lieber für „praktisch und bequem“.</p>
                               </div>`;
 
     // Card Temperaturen
@@ -146,8 +146,8 @@
     cardgeschenke.innerHTML = `<div>
                                 <h2>Geschenke und Übergabe</h2>
                                 <p>Das größte Geschenk, das ihr uns machen könnt, ist, gemeinsam mit uns unsere Liebe und unser Versprechen zu feiern und ganz viel Lebensfreude mitzubringen.</p>
-                                <p>Wenn ihr uns zusätzlich ein weltliches Geschenk machen möchtet, freuen wir uns über eine Spende für die Flitterwochenkasse oder den Beziehungspflegefond. 😇</p> 
-                                <p>Die beste Gelgenheit um pysische Geschenke zu übergeben, ist bei der Agape vor der Kirche im Anschluss an die Trauung. So kann der logistische Aufwand für Transport zur und Verwahrung auf der Alm vermieden werden.</p>
+                                <p>Wenn ihr uns zusätzlich ein weltliches Geschenk machen möchtet, freuen wir uns über eine Spende für die Flitterwochenkasse oder den Beziehungspflegefonds. 😇</p>
+                                <p>Die beste Gelegenheit, um physische Geschenke zu übergeben, ist bei der Agape vor der Kirche im Anschluss an die Trauung. So kann der logistische Aufwand für Transport zur und Verwahrung auf der Alm vermieden werden.</p>
                               </div>`;
 
     // Card Freitag
