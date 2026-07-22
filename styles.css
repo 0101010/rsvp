@@ -2,8 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 :root{
   --card-size: 300px;
-  /* increase header reserve to safely contain 2 wrapped title lines */
-  --layout-breakpoint: 980px;
 }
 
 html, body {
@@ -41,9 +39,6 @@ body {
   justify-content: center;
   align-items: center;
   pointer-events: none;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-image: var(--bg-image);
 }
 
 /* previous single-image rules removed: slideshow uses .bg-slide elements now */
@@ -60,25 +55,44 @@ body {
   pointer-events: none;
   z-index: 1;
 }
-/* Slideshow styles */
+/* Slideshow styles: pure-CSS crossfade, no JS */
 .bg-slides {
   position: absolute;
   inset: 0;
-  z-index: -3; /* behind the main-bg area but behind the blurred pseudo */
+  z-index: -3;
   overflow: hidden;
+  /* base layer = first image, so the loop wrap never flashes */
+  background: url('background1.jpg') center center / cover no-repeat;
 }
 .bg-slide {
   position: absolute;
   inset: 0;
   background-position: center center;
   background-size: cover;
-  /* no blur: keep background images sharp */
   filter: saturate(0.99) brightness(0.9);
   opacity: 0;
-  transition: opacity 1.7s ease-in-out;
+  animation: bgfade 36s linear infinite;
 }
-.bg-slide[data-active="true"]{
-  opacity: 1;
+.bg-slide:nth-child(1) { background-image: url('background1.jpg');  animation-delay:  0s; }
+.bg-slide:nth-child(2) { background-image: url('background2.jpg');  animation-delay:  6s; }
+.bg-slide:nth-child(3) { background-image: url('background3.JPG');  animation-delay: 12s; }
+.bg-slide:nth-child(4) { background-image: url('background4.jpeg'); animation-delay: 18s; }
+.bg-slide:nth-child(5) { background-image: url('background5.jpeg'); animation-delay: 24s; }
+.bg-slide:nth-child(6) { background-image: url('background6.jpeg'); animation-delay: 30s; }
+
+/* Each slide fades in over the previous (which stays opaque beneath until the
+   incoming one is fully covering), so crossfades never reveal the base layer. */
+@keyframes bgfade {
+  0%     { opacity: 0; }
+  5.55%  { opacity: 1; }
+  22.22% { opacity: 1; }
+  27.77% { opacity: 0; }
+  100%   { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-slide { animation: none; }
+  .bg-slide:nth-child(1) { opacity: 1; }
 }
 .bg-overlay {
   position: absolute;
@@ -97,24 +111,11 @@ body {
   box-sizing: border-box;
   /* add a small vertical padding and respect safe-area insets on devices with notches */
   padding: calc(0.45rem + env(safe-area-inset-top, 0)) 1rem 0.45rem;
-  /* keep the header in flow but pinned near the top; avoids overlapping content */
-  position: sticky;
-  top: 0;
-  z-index: 50; /* higher so header/title always sits above page content */
-    min-height: 15rem;
+  /* the title sits in normal flow and scrolls away with the page (no sticky, no JS) */
+  min-height: 15rem;
 }
 
-/* enable smooth fade/slide when the header is toggled (mobile only) */
-
-  .site-header {
-    transition: opacity 280ms ease, transform 280ms ease;
-    will-change: opacity, transform;
-  }
-  .site-header.header-hidden {
-    opacity: 0;
-    transform: translateY(-6px);
-    pointer-events: none;
-  }
+/* the title scrolls away with the page; nothing to animate */
 
 
 h1.main-title {
@@ -142,16 +143,16 @@ h1.main-title {
 }
 
 .container {
-  /* Mobile-first: stack widgets vertically */
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 1600px;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  justify-items: center;
   align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 1rem auto 0; /* top spacing on mobile; auto centers on wide screens */
   padding: 0 1rem;
   box-sizing: border-box;
-  margin-top: 1rem;
 }
 
 .card {
@@ -162,8 +163,9 @@ h1.main-title {
   box-shadow: 0 6px 20px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  gap: 0.5rem; /* minimum spacing; space-evenly spreads any extra room, compresses when full */
   text-align: center;
   /* use fixed card size but shrink to viewport if needed so stacked layout matches horizontal */
   width: min(var(--card-size), 92vw);
@@ -175,7 +177,6 @@ h1.main-title {
 
 .location-card {
   position: relative;
-  /* styles.css is in assets/, so image is one level up */
   background: url('./location.jpeg') center center / cover no-repeat;
   border-radius: 1rem;
   overflow: hidden;
@@ -192,15 +193,21 @@ h1.main-title {
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  gap: 0.5rem;
   padding: 2rem;
   box-sizing: border-box;
   color: #fff;
 }
 
 h2, p {
-  margin: 0.5rem 0;
+  margin: 0;
+}
+
+/* a touch more breathing room under each card heading (adds to the flex gap) */
+.card h2 {
+  margin-bottom: 0.35rem;
 }
 
 a.button {
@@ -230,20 +237,13 @@ a.button:hover {
 }
 
 @media (min-width: 1000px) {
-  /* make header height exact on desktop so centering math is reliable */
+  /* trim the title's vertical padding on desktop */
   .site-header {
-    height: var(--header-reserve);
     padding-top: 0;
     padding-bottom: 0;
   }
   .container {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    gap: 2rem;
-    margin: 0 auto;
+    margin-top: 0;
   }
   /* ensure the title doesn't add unexpected extra height on desktop */
   h1.main-title {
@@ -267,10 +267,6 @@ a.button:hover {
     padding-top: calc(0.6rem + env(safe-area-inset-top, 0));
     padding-bottom: 0.4rem;
   }
-  /* double the spacing between cards on mobile */
-  .container {
-    gap: 2rem;
-  }
 }
 
 /* further reduce title size on small narrow screens to avoid pushing content down */
@@ -278,18 +274,6 @@ a.button:hover {
   h1.main-title {
     font-size: clamp(2.2rem, 6.5vw, 3.2rem);
   }
-}
-
-.container {
-  /* Switch from flex to CSS Grid for responsive card layout */
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  justify-items: center;
-  max-width: 1400px;
-  width: 100%;
-  padding: 0 1rem;
-  box-sizing: border-box;
 }
 
 .card.double-row {
