@@ -42,41 +42,38 @@
     locationCard.className = 'card location-card';
     locationCard.innerHTML = `<div class='location-overlay'>
                                 <h2>Wann und Wo</h2>
-                                <p>Datum: 29. August 2026<br>Ort: Obergurgl, Österreich<br><br><b>Früher Start am Vormittag 10:00</b></p>
+                                <p>Datum: 29. August 2026</b></p>
+                                <p>Kirche: Johannes Nepomuk Kirche, Ramolweg 2</p>
+                                <p>Feier: Hohe Mut Alm</p>
+                                <p>Ort: 6456 Obergurgl, Österreich</p>
                               </div>`;
 
     // Card Accomodation
     const cardac = document.createElement('div');
     cardac.className = 'card double-row';
     cardac.innerHTML = `<h2>Übernachtung</h2>
-                       <p>Als bodenständige preiswerte Option, empfehlen wir die Appartments und Zimmer im Haus Aktiv und Wendlhof. Beide Unterkünfte sind recht nah an der Kirche. Bitte wendet euch für diese Unterkünfte an Hermine und erwähnt den Anlass:</p>
-                       <p>
-                       <b>Hermine Schöpf</b>
-                       <a href="tel:+4352566322" target='_blank' class='button'>+43 5256 6322</a>
-                       <a href="mailto:info@haus-aktiv.com" target='_blank' class='button'>info@haus-aktiv.com</a></p>
-                       <p>Sollte Hermine schon voll sein oder ihr etwas luxuriöseres suchen gibt es ein Buchungsportal für Hotels:</p>
-                       <p><a href="https://www.oetztal.com/de/suchen-buchen/unterkuenfte/unterkunftsliste?from=2026-08-28&to=2026-08-30&adults[0]=2&location[0]=38429dda-1022-4f98-a189-412e6b244984&sort=price&search=1" target='_blank' class='button'>Tourismusverband</a></p>`;
+                       <p>Solltet ihr bereits vor Monaten gebucht haben aber keine konkrete Buchungsbestätigung erhalten haben, empfehlen wir erneut mit eurer Unterkunft Kontakt aufzunehmen und um Bestätigung zu bitten.</p>
+                       <p>Als alternative Unterbringung empfehlen wir das <i>Unizentrum Obergurgl</i>, wo mit dem Buchungspasswort <b>„Hochzeit Wildt“</b> noch Kapazitäten verfügbar sind. Achtet auf die Preisunterschiede je nach mitgebuchter Verpflegung.</p>
+                       <p><a href="mailto:obergurgl@uibk.ac.at" class='button'>Unizentrum Obergurgl</a></p>
+                       <p>Auch in anderen Quartieren gibt es noch Kapazitäten: Pension Michael, Haus Alpenblick, Haus Schönblick, Haus Christophorus und Ferienwohnungen Broser.</p>`;
 
     // Card Breakfast
     const cardbr = document.createElement('div');
     cardbr.className = 'card';
     cardbr.innerHTML = `<div>
                                 <h2>Sonntagsfrühstück</h2>
-                                <p>
-                                <br>Für den Morgen nach der Hochzeit planen wir ein gemeinsames Frühstück. 
-                                <br><br>(voraussichtlich 9:00-11:00)</p>
+                                <p>Für den Sonntag nach der Hochzeit laden wir euch herzlich zum gemeinsamen Abschlussfrühstück ein.</p>
+                                <p>Universitätszentrum Obergurgl, Gaisbergweg 5, 6456 Obergurgl</p>
+                                <p><b>7:00 bis 9:30</b></p>
                               </div>`;
 
     // Card Marathon
     const cardmar = document.createElement('div');
-    cardmar.className = 'card double-row';
+    cardmar.className = 'card';
     cardmar.innerHTML = `<div>
-                                <h2>Buchung und Abreise im Kontext des Ötztal Radmarathons</h2>
-                                <p>
-                                <br>Am 30. August findet der Ötztal Radmarathon statt.
-                                <br><br>Wir empfehlen die <b>zeitnahe Buchung einer Unterkunft</b>, da die Radmarathon Startplätze ab Mitte Februar vergeben werden.
-                                <br><br>Am Abreisetag Sonntag wird der Weg durchs Tal zweitweise gesperrt sein. Unter der Annahme, dass der Ablauf dem des Vorjahres entspricht, muss der Nachbarort Sölden bis ~12:30 passiert sein. Die genauen Durchfahrtszeiten werden noch bekannt gegeben.
-                                </p>
+                                <h2>Abreise</h2>
+                                <p>Am Sonntag wird der Weg durchs Tal zeitweise gesperrt sein. Es ist zu erwarten, dass der Nachbarort Sölden bis ~12:30 passiert sein muss.</p>
+                                <p>Sobald die genauen Durchfahrtszeiten bekannt sind, aktualisieren wir die Angaben hier.</p>
                               </div>`;
 
     // Card Travel Together
@@ -84,8 +81,8 @@
     cardtr.className = 'card';
     cardtr.innerHTML = `<div>
                                 <h2>Zusammen Reisen und Unterkommen</h2>
-                                <p>Wenn ihr offen seid jemanden mitzunehmen oder eine Unterkunft zu teilen, könnt ihr euch in dieser unmoderierten Gruppe zusammenfinden:</p>
-                                <p><a href="https://chat.whatsapp.com/Hba1y3pTnPbFohEDtqa1mD" target='_blank' class='button'>WhatsApp Gruppe</a></p>
+                                <p>Wenn ihr offen seid jemanden mitzunehmen oder eure Unterkunft zu teilen, könnt ihr euch in dieser unmoderierten Gruppe zusammenfinden:</p>
+                                <p><a href="https://chat.whatsapp.com/Hba1y3pTnPbFohEDtqa1mD" target='_blank' class='button'>WhatsApp Mitreisende</a></p>
                                </div>`;
 
     // Card Games
@@ -97,12 +94,83 @@
                                 <p><b>Ansprechpartnerin Aktivitäten</b><a href="https://wa.me/436766268474" target='_blank' class='button'>WhatsApp Marie</a></p>
                                </div>`;
 
-    container.appendChild(cardmar);
-    container.appendChild(cardtr);
-    container.appendChild(cardac);
-    container.appendChild(cardbr);
+    // Card Ablauf Kirche
+    const cardkirche = document.createElement('div');
+    cardkirche.className = 'card';
+    cardkirche.innerHTML = `<div>
+                                <h2>Zeiten Kirche</h2>
+                                <p>Ab <b>9:30</b> seid ihr willkommen, euch vor der Kirche zu versammeln.</p>
+                                <p>Gegen <b>9:50</b> ist Einlass, gegen <b>10:00</b> zieht die Braut ein.</p>
+                                <p>Im Anschluss an die Trauung, gegen <b>11:15</b>, findet die Agape vor der Kirche statt.</p>
+                              </div>`;
+
+    // Card Ablauf Feier
+    const cardfeier = document.createElement('div');
+    cardfeier.className = 'card';
+    cardfeier.innerHTML = `<div>
+                                <h2>Zeiten Feier</h2>
+                                <p><b>12:30</b> Gemeinsame Shuttle- & Liftfahrt auf die Hohe Mut.</p>
+                                <p><b>16:00</b> Ende des regulären Liftbetriebs. Vor Ende der Feier ist eine Abfahrt nur in Notfällen möglich.</p>
+                                <p><b>22:15</b> Ende der Feier und gemeinsame Liftabfahrt</p>
+                              </div>`;
+
+    // Card Kleiderordnung
+    const cardkleider = document.createElement('div');
+    cardkleider.className = 'card';
+    cardkleider.innerHTML = `<div>
+                                <h2>Kleiderordnung</h2>
+                                <p>Von smart casual bis formell, kleidet euch festlich aber ganz so, wie ihr euch wohlfühlt.</p>
+                                <p>Traditionsgemäß bitten wir, auf rein-weiße oder rein-rote Outfits zu verzichten.</p>
+                              </div>`;
+
+    // Card Schuhwahl
+    const cardschuhe = document.createElement('div');
+    cardschuhe.className = 'card';
+    cardschuhe.innerHTML = `<div>
+                                <h2>Schuhwahl</h2>
+                                <p>Die Fußwege ab der Kirche sind dank Shuttle und Lift kurz. Auf der Alm besteht der Boden aus Planken und Fliesen. Das Gruppenfoto wird auf einer Wiese stattfinden. Entscheidet euch bei den Schuhen also lieber für "praktisch und bequem".</p>
+                              </div>`;
+
+    // Card Temperaturen
+    const cardtemp = document.createElement('div');
+    cardtemp.className = 'card';
+    cardtemp.innerHTML = `<div>
+                                <h2>Temperaturen</h2>
+                                <p>Tagsüber ist im Dorfzentrum mit <b>11°C bis 16°C</b> und auf der Alm mit <b>6°C bis 11°C</b> zu rechnen. Stellenweise kann es zu Regenfall kommen.</p>
+                                <p>Mit Ausnahme der Agape (traditioneller Sektempfang vor der Kirche) findet die Feier primär in Innenräumen statt.</p>
+                              </div>`;
+
+    // Card Geschenke
+    const cardgeschenke = document.createElement('div');
+    cardgeschenke.className = 'card double-row';
+    cardgeschenke.innerHTML = `<div>
+                                <h2>Geschenke</h2>
+                                <p>Das größte Geschenk, das ihr uns machen könnt, ist, gemeinsam mit uns unsere Liebe und unser Versprechen zu feiern und ganz viel Lebensfreude mitzubringen.</p>
+                                <p>Wenn ihr uns zusätzlich ein weltliches Geschenk machen möchtet, freuen wir uns über eine Spende für die Flitterwochenkasse. Physische Geschenke übergebt ihr am besten im Anschluss an die Trauung bei der Agape vor der Kirche, um den Aufwand für Transport und Verwahrung auf der Alm zu vermeiden.</p>
+                              </div>`;
+
+    // Card Freitag
+    const cardfreitag = document.createElement('div');
+    cardfreitag.className = 'card';
+    cardfreitag.innerHTML = `<div>
+                                <h2>Vor der Hochzeit</h2>
+                                <p>Viele Gäste reisen schon am Freitag an, allerdings ist das Brautpaar an diesem Tag mit Vorbereitungen beschäftigt. Falls ihr euch unabhängig verabreden möchtet:</p>
+                                <p><a href="https://chat.whatsapp.com/BBLWJ2WESvY0G6S96EDw3U?s=cl&p=i&mlu=4" target='_blank' class='button'>WhatsApp Freitag</a></p>
+                              </div>`;
+
     container.appendChild(locationCard);
+    container.appendChild(cardkirche);
+    container.appendChild(cardfeier);
+    container.appendChild(cardkleider);
+    container.appendChild(cardac);
+    container.appendChild(cardtemp);
+    container.appendChild(cardschuhe);
+    container.appendChild(cardbr);
     container.appendChild(cardga);
+    container.appendChild(cardgeschenke);
+    container.appendChild(cardfreitag);
+    container.appendChild(cardtr);
+    container.appendChild(cardmar);
     container.appendChild(card2);
 
     const initialDeadline = new Date('2026-08-29T10:00:00').getTime();
