@@ -119,7 +119,7 @@
     cardkleider.className = 'card';
     cardkleider.innerHTML = `<div>
                                 <h2>Kleiderordnung</h2>
-                                <p>Von smart casual bis formell, kleidet euch festlich, aber ganz so, wie ihr euch wohlfühlt.</p>
+                                <p>Kleidet euch festlich, aber ganz so, wie ihr euch wohlfühlt, von smart casual über Tracht bis formell.</p>
                                 <p>Traditionsgemäß bitten wir, auf rein-weiße oder rein-rote Outfits zu verzichten.</p>
                               </div>`;
 
