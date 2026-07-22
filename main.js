@@ -144,9 +144,10 @@
     const cardgeschenke = document.createElement('div');
     cardgeschenke.className = 'card double-row';
     cardgeschenke.innerHTML = `<div>
-                                <h2>Geschenke</h2>
+                                <h2>Geschenke und Übergabe</h2>
                                 <p>Das größte Geschenk, das ihr uns machen könnt, ist, gemeinsam mit uns unsere Liebe und unser Versprechen zu feiern und ganz viel Lebensfreude mitzubringen.</p>
-                                <p>Wenn ihr uns zusätzlich ein weltliches Geschenk machen möchtet, freuen wir uns über eine Spende für die Flitterwochenkasse. Physische Geschenke übergebt ihr am besten im Anschluss an die Trauung bei der Agape vor der Kirche, um den Aufwand für Transport und Verwahrung auf der Alm zu vermeiden.</p>
+                                <p>Wenn ihr uns zusätzlich ein weltliches Geschenk machen möchtet, freuen wir uns über eine Spende für die Flitterwochenkasse oder den Beziehungspflegefond. 😇</p> 
+                                <p>Die beste Gelgenheit um pysische Geschenke zu übergeben, ist bei der Agape vor der Kirche im Anschluss an die Trauung. So kann der logistische Aufwand für Transport zur und Verwahrung auf der Alm vermieden werden.</p>
                               </div>`;
 
     // Card Freitag
