@@ -280,3 +280,13 @@ a.button:hover {
   grid-row: span 2; /* spans two rows vertically */
   aspect-ratio: 1 / 2.12;
 }
+
+/* Finale card: at the widest (4-column) layout it keeps a normal square
+   card size but spans two columns, so it sits centered over two grid
+   fields (justify-items: center handles the centering). At any narrower
+   width the media query is inactive and it renders as a normal card. */
+@media (min-width: 1328px) {
+  .card.double-col {
+    grid-column: span 2;
+  }
+}
